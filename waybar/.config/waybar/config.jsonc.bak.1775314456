@@ -9,7 +9,7 @@
     "hyprland/workspaces",
     "hyprland/window",
     "custom/cava",
-    "mpris"
+    "mpris",
   ],
   "modules-center": [
     "clock",
@@ -17,8 +17,8 @@
     "custom/weather",
     "custom/netspeed",
     "custom/updatespacman",
-    "custom/update"
-    // "custom/openvpn",
+    "custom/update",
+    "custom/openvpn",
   ],
   "modules-right": [
     "group/tray-expander",
@@ -28,7 +28,7 @@
     "disk",
     "memory",
     "pulseaudio",
-    "cpu"
+    "cpu",
   ],
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -45,81 +45,75 @@
       "7": "7",
       "8": "8",
       "9": "9",
-      "10": "10"
+      "10": "10",
     },
     "persistent-workspaces": {
       "1": [],
       "2": [],
       "3": [],
       "4": [],
-      "5": []
-    }
+      "5": [],
+    },
   },
-  // "custom/openvpn": {
-  //   "exec": "~/.config/waybar/scripts/vpn-status.sh",
-  //   "return-type": "json",
-  //   "interval": 5,
-  //   "on-click": "~/.config/waybar/scripts/vpn-toggle.sh",
-  //   "format": "{}",
-  // },
+  "custom/openvpn": {
+    "exec": "~/.config/waybar/scripts/vpn-status.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "~/.config/waybar/scripts/vpn-toggle.sh",
+    "format": "{}",
+  },
   "custom/omarchy": {
     "format": "<span font='omarchy'>\ue900</span>",
     "on-click": "omarchy-menu",
-    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
+    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space",
   },
   "hyprland/window": {
     "format": "<span  weight='bold' >{class}</span>",
     "max-length": 15,
     "icon": true,
-    "icon-size": 14
+    "icon-size": 14,
   },
   "custom/update": {
     "format": "<span weight='bold' >\ue900</span>",
     "exec": "omarchy-update-available",
     "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
     "tooltip-format": "Omarchy update available",
-    "interval": 600
+    "interval": 600,
   },
   "custom/updatespacman": {
     "format": "{} {icon}",
     "return-type": "json",
     "format-icons": {
       "has-updates": "󱍷",
-      "updated": "󰂪"
+      "updated": "󰂪",
     },
     "exec-if": "which waybar-module-pacman-updates",
     "exec": "waybar-module-pacman-updates --interval-seconds 5 --network-interval-seconds 300",
     "on-click": "omarchy-launch-floating-terminal-with-presentation sudo pacman -Syu",
-    "tooltip-format": "{} package updates available"
+    "tooltip-format": "{} package updates available",
   },
   "cpu": {
     "interval": 5,
     "format": "{usage}% 󰍛",
     "on-click": "omarchy-launch-or-focus-tui btop",
     "on-click-right": "omarchy-launch-or-focus-tui htop",
-    "tooltip-format": "CPU: {usage}%\nLoad: {load}"
+    "tooltip-format": "CPU: {usage}%\nLoad: {load}",
   },
   "clock": {
     "format": "{:%A %H:%M}",
     "format-alt": "{:%d %B W%V %Y}",
     "tooltip": false,
-    "on-click-right": "omarchy-cmd-tzupdate"
+    "on-click-right": "omarchy-cmd-tzupdate",
   },
   "memory": {
     "interval": 5,
     "format": "  {percentage}%",
     "on-click": "omarchy-launch-or-focus-tui btop",
     "on-click-right": "omarchy-launch-or-focus-tui htop",
-    "tooltip-format": "Memory: {used:0.1f}G / {total:0.1f}G ({percentage}%)\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G"
+    "tooltip-format": "Memory: {used:0.1f}G / {total:0.1f}G ({percentage}%)\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G",
   },
   "network": {
-    "format-icons": [
-      "󰤯",
-      "󰤟",
-      "󰤢",
-      "󰤥",
-      "󰤨"
-    ],
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "format": "{icon}",
     "format-wifi": "{icon}",
     "format-ethernet": "{ifname} 󰀂",
@@ -130,34 +124,34 @@
     "interval": 3,
     "nospacing": 1,
     "on-click": "ghostty --class=Impala -e impala",
-    "on-click-right": "nm-connection-editor"
+    "on-click-right": "nm-connection-editor",
   },
-  // "battery": {
-  //   "format": "{capacity}% {icon}",
-  //   "format-discharging": "{icon}",
-  //   "format-charging": "{icon}",
-  //   "format-plugged": "{power}",
-  //   "format-icons": {
-  //     "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
-  //     "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-  //   },
-  //   "format-full": "󰂅",
-  //   "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%\nTime remaining: {time}",
-  //   "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%\nTime until full: {time}",
-  //   "tooltip-format-full": "Full ({capacity}%)",
-  //   "on-click-right": "powerprofilesctl",
-  //   "interval": 5,
-  //   "states": {
-  //     "warning": 20,
-  //     "critical": 10,
-  //   },
-  // },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{icon}",
+    "format-charging": "{icon}",
+    "format-plugged": "{power}",
+    "format-icons": {
+      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    },
+    "format-full": "󰂅",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%\nTime remaining: {time}",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%\nTime until full: {time}",
+    "tooltip-format-full": "Full ({capacity}%)",
+    "on-click-right": "powerprofilesctl",
+    "interval": 5,
+    "states": {
+      "warning": 20,
+      "critical": 10,
+    },
+  },
   "bluetooth": {
     "format": "",
     "format-disabled": "󰂲",
     "format-connected": "",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "omarchy-launch-bluetooth"
+    "on-click": "omarchy-launch-bluetooth",
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",
@@ -170,28 +164,20 @@
     "scroll-step": 5,
     "format-icons": {
       "headphone": "",
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    }
+      "default": ["", "", ""],
+    },
   },
   "group/tray-expander": {
     "orientation": "inherit",
     "drawer": {
       "transition-duration": 600,
-      "children-class": "tray-group-item"
+      "children-class": "tray-group-item",
     },
-    "modules": [
-      "custom/expand-icon",
-      "tray",
-      "bluetooth"
-    ]
+    "modules": ["custom/expand-icon", "tray", "bluetooth"],
   },
   "custom/expand-icon": {
     "format": " ",
-    "tooltip": false
+    "tooltip": false,
   },
   "custom/voxtype": {
     "exec": "omarchy-voxtype-status",
@@ -200,19 +186,19 @@
     "format-icons": {
       "idle": "",
       "recording": "󰍬",
-      "transcribing": "󰔟"
+      "transcribing": "󰔟",
     },
     "tooltip": true,
     "on-click-right": "omarchy-voxtype-config",
-    "on-click": "omarchy-voxtype-model"
+    "on-click": "omarchy-voxtype-model",
   },
   "tray": {
     "icon-size": 12,
-    "spacing": 12
+    "spacing": 12,
   },
   "custom/cava": {
     "format": "{}",
-    "exec": "~/.config/waybar/cava.sh"
+    "exec": "~/.config/waybar/cava.sh",
   },
   "mpris": {
     "format": "{status_icon} {artist} - {title}",
@@ -223,12 +209,12 @@
       "default": "🎵",
       "mpv": "🎵",
       "spotify": "󰓇",
-      "firefox": "󰈹"
+      "firefox": "󰈹",
     },
     "status-icons": {
       "playing": "▶",
       "paused": "⏸",
-      "stopped": "⏹"
+      "stopped": "⏹",
     },
     "tooltip-format": "{title}\n{artist} - {album}\n{position}/{length}",
     "tooltip-format-paused": "{title}\n{artist} - {album}\nPaused",
@@ -236,7 +222,7 @@
     "on-click-right": "playerctl stop",
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous",
-    "max-length": 30
+    "max-length": 30,
   },
   "custom/weather": {
     "format": "{}°",
@@ -244,7 +230,7 @@
     "interval": 300,
     "exec": "wttrbar --nerd --location Washington,DC",
     "return-type": "json",
-    "on-click": "curl -s 'wttr.in/Hildesheim?format=3' | xargs -I {} notify-send 'Weather' {}"
+    "on-click": "curl -s 'wttr.in/Hildesheim?format=3' | xargs -I {} notify-send 'Weather' {}",
   },
   "temperature": {
     "thermal-zone": 2,
@@ -257,23 +243,23 @@
       "", // Icon: temperature-quarter
       "", // Icon: temperature-half
       "", // Icon: temperature-three-quarters
-      "" // Icon: temperature-full
+      "", // Icon: temperature-full
     ],
     "tooltip-format": "Temperature: {temperatureC}°C",
     "on-click": "omarchy-launch-or-focus-tui btop",
-    "interval": 5
+    "interval": 5,
   },
   "custom/calendar": {
     "format": " 󰃭 ",
     "on-click": "lvsk-calendar-launcher",
-    "tooltip-format": "Click to open calendar"
+    "tooltip-format": "Click to open calendar",
   },
   "custom/netspeed": {
     "exec": "~/.config/waybar/net_speed.sh",
     "interval": 2,
     "format": "{}",
     "tooltip-format": "Network Speed\nClick to open network manager",
-    "on-click": "ghostty --class=Impala -e impala"
+    "on-click": "ghostty --class=Impala -e impala",
   },
   "disk": {
     "interval": 30,
@@ -286,18 +272,18 @@
     "on-click-right": "thunar",
     "states": {
       "warning": 80,
-      "critical": 90
-    }
+      "critical": 90,
+    },
   },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": "󰒳",
-      "deactivated": "󰒲"
+      "deactivated": "󰒲",
     },
     "tooltip-format": "{status}",
     "tooltip-format-activated": "Idle inhibitor: Active",
     "tooltip-format-deactivated": "Idle inhibitor: Inactive",
-    "on-click": "toggle"
-  }
+    "on-click": "toggle",
+  },
 }
